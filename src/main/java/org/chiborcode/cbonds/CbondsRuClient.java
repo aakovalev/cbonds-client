@@ -22,12 +22,23 @@ public class CbondsRuClient {
     public ClientResponse execute(CbondsMethod method, ClientRequest clientRequest)
             throws URISyntaxException, IOException, InterruptedException
     {
-        HttpRequest request = newBuilder()
-                .uri(new URI(url + method.name()))
-                .POST(BodyPublishers.ofString(clientRequest.toJSONString()))
-                .build();
+        HttpRequest request = buildRequest(
+                method.name(), clientRequest.toJSONString());
         HttpResponse<String> response =
                 httpClient.send(request, BodyHandlers.ofString());
         return ClientResponse.fromJSON(response.body());
+    }
+
+    private HttpRequest buildRequest(String methodName, String requestAsJSON)
+            throws URISyntaxException
+    {
+        return newBuilder()
+                .uri(buildURI(methodName))
+                .POST(BodyPublishers.ofString(requestAsJSON))
+                .build();
+    }
+
+    private URI buildURI(String methodName) throws URISyntaxException {
+        return new URI(url + methodName);
     }
 }
