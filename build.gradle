@@ -10,15 +10,15 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.34'
-    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
 
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.hamcrest:hamcrest-all:1.3'
-    testImplementation 'org.json:json:20240303'
+    testImplementation platform("org.junit:junit-bom:${junitVersion}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
+    testImplementation "org.hamcrest:hamcrest-all:${hamcrestVersion}"
+    testImplementation "org.json:json:${jsonVersion}"
 }
 
 test {
