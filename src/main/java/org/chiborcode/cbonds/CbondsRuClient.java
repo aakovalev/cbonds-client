@@ -1,0 +1,33 @@
+package org.chiborcode.cbonds;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import static java.net.http.HttpRequest.*;
+import static java.net.http.HttpResponse.*;
+
+public class CbondsRuClient {
+    private final String url;
+    private final HttpClient httpClient;
+
+    public CbondsRuClient(HttpClient client, String url) {
+        this.url = url;
+        this.httpClient = client;
+    }
+
+    public ClientResponse execute(CbondsMethod method, ClientRequest clientRequest)
+            throws URISyntaxException, IOException, InterruptedException
+    {
+        HttpRequest request = newBuilder()
+                .uri(new URI(url + method.name()))
+                .POST(BodyPublishers.ofString(clientRequest.toJSONString()))
+                .build();
+        HttpResponse<String> response =
+                httpClient.send(request, BodyHandlers.ofString());
+        return ClientResponse.fromJSON(response.body());
+    }
+}
