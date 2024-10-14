@@ -5,7 +5,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
-import static java.util.Arrays.asList;
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -38,10 +39,10 @@ class ClientRequestTest {
     void serialization() throws JsonProcessingException {
         ClientRequest request = new ClientRequest();
         request.setAuth(new Credentials(TEST_USER, TEST_PASSWORD));
-        request.setFilters(asList(new Filter(
+        request.setFilters(List.of(new Filter(
                 TEST_FIELD, TEST_OPERATOR, TEST_ISIN_CODES)));
         request.setQuantity(new Quantity(TEST_LIMIT, TEST_OFFSET));
-        request.setSorting(asList(new Sorting(TEST_FIELD, Order.ASC)));
+        request.setSorting(List.of(new Sorting(TEST_FIELD, Order.ASC)));
 
         String actualJsonString = request.toJSONString();
 
