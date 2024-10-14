@@ -12,6 +12,7 @@ public class ClientRequest {
     private List<Filter> filters;
     private Quantity quantity;
     private List<Sorting> sorting;
+    private List<Field> fields;
 
     public String toJSONString() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

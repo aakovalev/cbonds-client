@@ -34,6 +34,7 @@ class ClientRequestTest {
     private static final String OFFSET = "offset";
     private static final String SORTING = "sorting";
     private static final String ORDER = "order";
+    private static final String FIELDS = "fields";
 
     @Test
     void serialization() throws JsonProcessingException {
@@ -43,6 +44,7 @@ class ClientRequestTest {
                 TEST_FIELD, TEST_OPERATOR, TEST_ISIN_CODES)));
         request.setQuantity(new Quantity(TEST_LIMIT, TEST_OFFSET));
         request.setSorting(List.of(new Sorting(TEST_FIELD, Order.ASC)));
+        request.setFields(List.of(new Field(TEST_FIELD)));
 
         String actualJsonString = request.toJSONString();
 
@@ -70,6 +72,9 @@ class ClientRequestTest {
                 .put(SORTING, new JSONArray()
                         .put(new JSONObject()
                                 .put(FIELD, TEST_FIELD)
-                                .put(ORDER, TEST_ORDER)));
+                                .put(ORDER, TEST_ORDER)))
+                .put(FIELDS, new JSONArray()
+                        .put(new JSONObject()
+                                .put(FIELD, TEST_FIELD)));
     }
 }
