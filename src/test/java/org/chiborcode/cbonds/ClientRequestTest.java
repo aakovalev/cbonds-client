@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.chiborcode.cbonds.ClientRequestField.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -20,21 +21,6 @@ class ClientRequestTest {
     private static final int TEST_LIMIT = 10;
     private static final int TEST_OFFSET = 0;
     private static final String TEST_ORDER = "asc";
-
-    // request fields
-    private static final String AUTH = "auth";
-    private static final String LOGIN = "login";
-    private static final String PASSWORD = "password";
-    private static final String FIELD = "field";
-    private static final String OPERATOR = "operator";
-    private static final String VALUE = "value";
-    private static final String FILTERS = "filters";
-    private static final String QUANTITY = "quantity";
-    private static final String LIMIT = "limit";
-    private static final String OFFSET = "offset";
-    private static final String SORTING = "sorting";
-    private static final String ORDER = "order";
-    private static final String FIELDS = "fields";
 
     @Test
     void serialization() throws JsonProcessingException {
@@ -58,23 +44,23 @@ class ClientRequestTest {
 
     private static JSONObject buildExpectedJSON() {
         return new JSONObject()
-                .put(AUTH, new JSONObject()
-                        .put(LOGIN, TEST_USER)
-                        .put(PASSWORD, TEST_PASSWORD))
-                .put(FILTERS, new JSONArray()
+                .put(AUTH.toJsonValue(), new JSONObject()
+                        .put(LOGIN.toJsonValue(), TEST_USER)
+                        .put(PASSWORD.toJsonValue(), TEST_PASSWORD))
+                .put(FILTERS.toJsonValue(), new JSONArray()
                         .put(new JSONObject()
-                                .put(FIELD, TEST_FIELD)
-                                .put(OPERATOR, TEST_OPERATOR)
-                                .put(VALUE, TEST_ISIN_CODES)))
-                .put(QUANTITY, new JSONObject()
-                        .put(LIMIT, TEST_LIMIT)
-                        .put(OFFSET, TEST_OFFSET))
-                .put(SORTING, new JSONArray()
+                                .put(FIELD.toJsonValue(), TEST_FIELD)
+                                .put(OPERATOR.toJsonValue(), TEST_OPERATOR)
+                                .put(VALUE.toJsonValue(), TEST_ISIN_CODES)))
+                .put(QUANTITY.toJsonValue(), new JSONObject()
+                        .put(LIMIT.toJsonValue(), TEST_LIMIT)
+                        .put(OFFSET.toJsonValue(), TEST_OFFSET))
+                .put(SORTING.toJsonValue(), new JSONArray()
                         .put(new JSONObject()
-                                .put(FIELD, TEST_FIELD)
-                                .put(ORDER, TEST_ORDER)))
-                .put(FIELDS, new JSONArray()
+                                .put(FIELD.toJsonValue(), TEST_FIELD)
+                                .put(ORDER.toJsonValue(), TEST_ORDER)))
+                .put(FIELDS.toJsonValue(), new JSONArray()
                         .put(new JSONObject()
-                                .put(FIELD, TEST_FIELD)));
+                                .put(FIELD.toJsonValue(), TEST_FIELD)));
     }
 }
