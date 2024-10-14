@@ -10,6 +10,7 @@ import java.util.List;
 public class ClientRequest {
     private Credentials auth;
     private List<Filter> filters;
+    private Quantity quantity;
 
     public String toJSONString() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

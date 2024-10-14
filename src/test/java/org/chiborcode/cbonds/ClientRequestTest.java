@@ -16,6 +16,8 @@ class ClientRequestTest {
     private static final String TEST_ISIN_CODES = "US037833EL06;USU5876JAM72";
     private static final String TEST_FIELD = "isin_code";
     private static final String TEST_OPERATOR = "in";
+    private static final int TEST_LIMIT = 10;
+    private static final int TEST_OFFSET = 0;
 
     // request fields
     private static final String AUTH = "auth";
@@ -24,6 +26,10 @@ class ClientRequestTest {
     private static final String FIELD = "field";
     private static final String OPERATOR = "operator";
     private static final String VALUE = "value";
+    private static final String FILTERS = "filters";
+    private static final String QUANTITY = "quantity";
+    private static final String LIMIT = "limit";
+    private static final String OFFSET = "offset";
 
     @Test
     void serialization() throws JsonProcessingException {
@@ -31,6 +37,7 @@ class ClientRequestTest {
         request.setAuth(new Credentials(TEST_USER, TEST_PASSWORD));
         request.setFilters(asList(new Filter(
                 TEST_FIELD, TEST_OPERATOR, TEST_ISIN_CODES)));
+        request.setQuantity(new Quantity(TEST_LIMIT, TEST_OFFSET));
 
         String actualJsonString = request.toJSONString();
 
@@ -47,10 +54,13 @@ class ClientRequestTest {
                 .put(AUTH, new JSONObject()
                         .put(LOGIN, TEST_USER)
                         .put(PASSWORD, TEST_PASSWORD))
-                .put("filters", new JSONArray()
+                .put(FILTERS, new JSONArray()
                         .put(new JSONObject()
                                 .put(FIELD, TEST_FIELD)
                                 .put(OPERATOR, TEST_OPERATOR)
-                                .put(VALUE, TEST_ISIN_CODES)));
+                                .put(VALUE, TEST_ISIN_CODES)))
+                .put(QUANTITY, new JSONObject()
+                        .put(LIMIT, TEST_LIMIT)
+                        .put(OFFSET, TEST_OFFSET));
     }
 }
