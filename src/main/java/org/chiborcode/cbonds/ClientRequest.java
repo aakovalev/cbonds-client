@@ -11,6 +11,7 @@ public class ClientRequest {
     private Credentials auth;
     private List<Filter> filters;
     private Quantity quantity;
+    private List<Sorting> sorting;
 
     public String toJSONString() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

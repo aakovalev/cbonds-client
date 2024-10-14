@@ -18,6 +18,7 @@ class ClientRequestTest {
     private static final String TEST_OPERATOR = "in";
     private static final int TEST_LIMIT = 10;
     private static final int TEST_OFFSET = 0;
+    private static final String TEST_ORDER = "asc";
 
     // request fields
     private static final String AUTH = "auth";
@@ -30,6 +31,8 @@ class ClientRequestTest {
     private static final String QUANTITY = "quantity";
     private static final String LIMIT = "limit";
     private static final String OFFSET = "offset";
+    private static final String SORTING = "sorting";
+    private static final String ORDER = "order";
 
     @Test
     void serialization() throws JsonProcessingException {
@@ -38,6 +41,7 @@ class ClientRequestTest {
         request.setFilters(asList(new Filter(
                 TEST_FIELD, TEST_OPERATOR, TEST_ISIN_CODES)));
         request.setQuantity(new Quantity(TEST_LIMIT, TEST_OFFSET));
+        request.setSorting(asList(new Sorting(TEST_FIELD, Order.ASC)));
 
         String actualJsonString = request.toJSONString();
 
@@ -61,6 +65,10 @@ class ClientRequestTest {
                                 .put(VALUE, TEST_ISIN_CODES)))
                 .put(QUANTITY, new JSONObject()
                         .put(LIMIT, TEST_LIMIT)
-                        .put(OFFSET, TEST_OFFSET));
+                        .put(OFFSET, TEST_OFFSET))
+                .put(SORTING, new JSONArray()
+                        .put(new JSONObject()
+                                .put(FIELD, TEST_FIELD)
+                                .put(ORDER, TEST_ORDER)));
     }
 }
