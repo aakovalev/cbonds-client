@@ -3,10 +3,30 @@ package org.chiborcode.cbonds;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum FilterOperator {
-    EQ, NE, LT, LE, GT, GE, IN, NI, BW, BN, EW, CN, NC, NU, NN;
+    EQUAL("eq"),
+    NOT_EQUAL("ne"),
+    LESS_THAN("lt"),
+    LESS_OR_EQUAL("le"),
+    GREATER_THAN("gt"),
+    GREATER_OR_EQUAL("ge"),
+    IS_IN("in"),
+    IS_NOT_IN("ni"),
+    BEGINS_WITH("bw"),
+    NOT_BEGIN_WITH("bn"),
+    ENDS_WITH("ew"),
+    CONTAINS("cn"),
+    DOES_NOT_CONTAIN("nc"),
+    IS_NULL("nu"),
+    IS_NOT_NULL("nn");
+
+    private String code;
+
+    FilterOperator(String operatorCode) {
+        this.code = operatorCode;
+    }
 
     @JsonValue
     public String toJsonValue() {
-        return name().toLowerCase();
+        return code;
     }
 }

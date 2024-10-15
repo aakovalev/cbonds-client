@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.chiborcode.cbonds.FilterOperator.EQ;
-import static org.chiborcode.cbonds.FilterOperator.GT;
+import static org.chiborcode.cbonds.FilterOperator.EQUAL;
+import static org.chiborcode.cbonds.FilterOperator.GREATER_THAN;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -31,14 +31,14 @@ class ClientRequestBuilderTest {
     @Test
     void should_build_request_with_given_filters() {
         ClientRequest request = new ClientRequestBuilder()
-                .withFilter(new Filter(ISIN_CODE, EQ, APPLE_STOCK))
-                .withFilter(new Filter(ISSUED_DATE, GT, JUN12_2020))
+                .withFilter(new Filter(ISIN_CODE, EQUAL, APPLE_STOCK))
+                .withFilter(new Filter(ISSUED_DATE, GREATER_THAN, JUN12_2020))
                 .build();
 
         List<Filter> actualFilters = request.getFilters();
         List<Filter> expectedFilters = List.of(
-                new Filter(ISIN_CODE, EQ, APPLE_STOCK),
-                new Filter(ISSUED_DATE, GT, JUN12_2020));
+                new Filter(ISIN_CODE, EQUAL, APPLE_STOCK),
+                new Filter(ISSUED_DATE, GREATER_THAN, JUN12_2020));
         assertThat(actualFilters, equalTo(expectedFilters));
     }
 }
