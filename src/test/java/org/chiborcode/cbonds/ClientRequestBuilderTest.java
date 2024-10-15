@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.chiborcode.cbonds.FilterOperator.EQ;
+import static org.chiborcode.cbonds.FilterOperator.GT;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -11,10 +13,8 @@ class ClientRequestBuilderTest {
     private static final String USER = "user";
     private static final String PASSWORD = "password";
     private static final String ISIN_CODE = "ISIN_CODE";
-    private static final String EQ = "EQ";
     private static final String APPLE_STOCK = "US0378331005";
     private static final String ISSUED_DATE = "ISSUED_DATE";
-    private static final String GT = "GT";
     private static final String JUN12_2020 = "2020-06-12";
 
     @Test

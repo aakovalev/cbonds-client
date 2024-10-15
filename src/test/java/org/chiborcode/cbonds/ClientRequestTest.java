@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.chiborcode.cbonds.ClientRequestField.*;
+import static org.chiborcode.cbonds.FilterOperator.IN;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -17,7 +18,6 @@ class ClientRequestTest {
     private static final String TEST_PASSWORD = "some-password";
     private static final String TEST_ISIN_CODES = "US037833EL06;USU5876JAM72";
     private static final String TEST_FIELD = "isin_code";
-    private static final String TEST_OPERATOR = "in";
     private static final int TEST_LIMIT = 10;
     private static final int TEST_OFFSET = 0;
     private static final String TEST_ORDER = "asc";
@@ -27,7 +27,7 @@ class ClientRequestTest {
         ClientRequest request = new ClientRequest();
         request.setAuth(new Credentials(TEST_USER, TEST_PASSWORD));
         request.setFilters(List.of(new Filter(
-                TEST_FIELD, TEST_OPERATOR, TEST_ISIN_CODES)));
+                TEST_FIELD, IN, TEST_ISIN_CODES)));
         request.setQuantity(new Quantity(TEST_LIMIT, TEST_OFFSET));
         request.setSorting(List.of(new Sorting(TEST_FIELD, Order.ASC)));
         request.setFields(List.of(new Field(TEST_FIELD)));
@@ -50,7 +50,7 @@ class ClientRequestTest {
                 .put(FILTERS.toJsonValue(), new JSONArray()
                         .put(new JSONObject()
                                 .put(FIELD.toJsonValue(), TEST_FIELD)
-                                .put(OPERATOR.toJsonValue(), TEST_OPERATOR)
+                                .put(OPERATOR.toJsonValue(), IN.toJsonValue())
                                 .put(VALUE.toJsonValue(), TEST_ISIN_CODES)))
                 .put(QUANTITY.toJsonValue(), new JSONObject()
                         .put(LIMIT.toJsonValue(), TEST_LIMIT)
