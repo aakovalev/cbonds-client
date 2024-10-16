@@ -15,7 +15,7 @@ public enum FilterOperator {
     NOT_BEGIN_WITH("bn"),
     ENDS_WITH("ew"),
     CONTAINS("cn"),
-    DOES_NOT_CONTAIN("nc"),
+    NOT_CONTAIN("nc"),
     IS_NULL("nu"),
     IS_NOT_NULL("nn");
 
