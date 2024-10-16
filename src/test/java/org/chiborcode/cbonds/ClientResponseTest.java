@@ -24,9 +24,9 @@ class ClientResponseTest {
     private static final String ISIN = "isin";
     private static final String ISIN1 = "RU0007984761";
     private static final String ISIN2 = "RU000A0ET123";
-    private static final String TOTAL_VALUE = "9";
-    private static final String LIMIT_VALUE = "10";
-    private static final String OFFSET_VALUE = "0";
+    private static final int TOTAL_VALUE = 9;
+    private static final int LIMIT_VALUE = 10;
+    private static final int OFFSET_VALUE = 0;
 
     @Test
     void deserialization() throws JsonProcessingException {
