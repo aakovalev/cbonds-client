@@ -65,4 +65,17 @@ class ClientRequestBuilderTest {
         List<Sorting> expectedSorting = List.of(new Sorting(ISIN_CODE, Order.DESC));
         assertThat(actualSorting, equalTo(expectedSorting));
     }
+
+    @Test
+    void should_build_request_with_given_fields() {
+        ClientRequest request = new ClientRequestBuilder()
+                .withField(ISIN_CODE)
+                .withField(ISSUED_DATE)
+                .build();
+
+        List<Field> actualFields = request.getFields();
+        List<Field> expectedFields = List.of(
+                new Field(ISIN_CODE), new Field(ISSUED_DATE));
+        assertThat(actualFields, equalTo(expectedFields));
+    }
 }

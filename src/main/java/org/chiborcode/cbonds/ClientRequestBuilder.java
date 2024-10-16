@@ -9,6 +9,7 @@ public class ClientRequestBuilder {
     private final List<Filter> filters = new ArrayList<>();
     private Quantity quantity;
     private final List<Sorting> sortings = new ArrayList<>();
+    private final List<Field> fields = new ArrayList<>();
 
     public ClientRequest build() {
         ClientRequest request = new ClientRequest();
@@ -16,6 +17,7 @@ public class ClientRequestBuilder {
         request.setFilters(filters);
         request.setQuantity(quantity);
         request.setSorting(sortings);
+        request.setFields(fields);
         return request;
     }
 
@@ -37,6 +39,11 @@ public class ClientRequestBuilder {
 
     public ClientRequestBuilder withSorting(Sorting sorting) {
         sortings.add(sorting);
+        return this;
+    }
+
+    public ClientRequestBuilder withField(String fieldName) {
+        fields.add(new Field(fieldName));
         return this;
     }
 }
