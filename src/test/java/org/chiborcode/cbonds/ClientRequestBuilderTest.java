@@ -16,6 +16,8 @@ class ClientRequestBuilderTest {
     private static final String APPLE_STOCK = "US0378331005";
     private static final String ISSUED_DATE = "ISSUED_DATE";
     private static final String JUN12_2020 = "2020-06-12";
+    private static final int LIMIT = 100;
+    private static final int OFFSET = 200;
 
     @Test
     void should_build_request_with_given_credentials() {
@@ -40,5 +42,16 @@ class ClientRequestBuilderTest {
                 new Filter(ISIN_CODE, EQUAL, APPLE_STOCK),
                 new Filter(ISSUED_DATE, GREATER_THAN, JUN12_2020));
         assertThat(actualFilters, equalTo(expectedFilters));
+    }
+
+    @Test
+    void should_build_request_with_given_quantity() {
+        ClientRequest request = new ClientRequestBuilder()
+                .withQuantity(new Quantity(LIMIT, OFFSET))
+                .build();
+
+        Quantity actualQuantity = request.getQuantity();
+        Quantity expectedQuantity = new Quantity(LIMIT, OFFSET);
+        assertThat(actualQuantity, equalTo(expectedQuantity));
     }
 }
