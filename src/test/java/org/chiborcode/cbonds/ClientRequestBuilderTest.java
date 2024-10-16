@@ -54,4 +54,15 @@ class ClientRequestBuilderTest {
         Quantity expectedQuantity = new Quantity(LIMIT, OFFSET);
         assertThat(actualQuantity, equalTo(expectedQuantity));
     }
+
+    @Test
+    void should_build_request_with_given_sorting() {
+        ClientRequest request = new ClientRequestBuilder()
+                .withSorting(new Sorting(ISIN_CODE, Order.DESC))
+                .build();
+
+        List<Sorting> actualSorting = request.getSorting();
+        List<Sorting> expectedSorting = List.of(new Sorting(ISIN_CODE, Order.DESC));
+        assertThat(actualSorting, equalTo(expectedSorting));
+    }
 }

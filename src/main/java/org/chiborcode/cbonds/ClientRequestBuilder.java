@@ -8,12 +8,14 @@ public class ClientRequestBuilder {
     private String password;
     private final List<Filter> filters = new ArrayList<>();
     private Quantity quantity;
+    private final List<Sorting> sortings = new ArrayList<>();
 
     public ClientRequest build() {
         ClientRequest request = new ClientRequest();
         request.setAuth(new Credentials(user, password));
         request.setFilters(filters);
         request.setQuantity(quantity);
+        request.setSorting(sortings);
         return request;
     }
 
@@ -30,6 +32,11 @@ public class ClientRequestBuilder {
 
     public ClientRequestBuilder withQuantity(Quantity quantity) {
         this.quantity = quantity;
+        return this;
+    }
+
+    public ClientRequestBuilder withSorting(Sorting sorting) {
+        sortings.add(sorting);
         return this;
     }
 }
