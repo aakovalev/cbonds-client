@@ -1,4 +1,4 @@
-package org.chiborcode.cbonds;
+package io.github.aakovalev.cbonds;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,10 +13,16 @@ import static java.net.http.HttpResponse.*;
 public class CbondsRuClient {
     private final String url;
     private final HttpClient httpClient;
+    public static final String DEFAULT_URL =
+            "https://ws.cbonds.info/services/json/";
 
     public CbondsRuClient(HttpClient client, String url) {
         this.url = url;
         this.httpClient = client;
+    }
+
+    public CbondsRuClient() {
+        this(HttpClient.newHttpClient(), DEFAULT_URL);
     }
 
     public ClientResponse execute(CbondsMethod method, ClientRequest clientRequest)

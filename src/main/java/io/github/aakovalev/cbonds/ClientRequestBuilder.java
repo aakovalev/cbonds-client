@@ -1,4 +1,4 @@
-package org.chiborcode.cbonds;
+package io.github.aakovalev.cbonds;
 
 import java.util.ArrayList;
 import java.util.List;

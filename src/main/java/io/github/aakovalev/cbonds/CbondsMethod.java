@@ -1,9 +1,9 @@
-package org.chiborcode.cbonds;
+package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Order {
-    ASC, DESC;
+public enum CbondsMethod {
+    GET_STOCKS;
 
     @JsonValue
     public String toValue() {
