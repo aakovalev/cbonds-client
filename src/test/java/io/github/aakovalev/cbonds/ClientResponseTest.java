@@ -1,4 +1,4 @@
-package org.chiborcode.cbonds;
+package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.json.JSONArray;
