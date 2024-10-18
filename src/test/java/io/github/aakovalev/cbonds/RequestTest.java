@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
 import static io.github.aakovalev.cbonds.RequestField.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,7 +24,7 @@ class RequestTest {
 
     @Test
     void serialization() throws JsonProcessingException {
-        Request request = new Request();
+        Request request = new Request(GET_STOCKS);
         request.setAuth(new Credentials(TEST_USER, TEST_PASSWORD));
         request.setFilters(List.of(new Filter(
                 TEST_FIELD, FilterOperator.IS_IN, TEST_ISIN_CODES)));

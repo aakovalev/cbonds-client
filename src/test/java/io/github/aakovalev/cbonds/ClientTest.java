@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static io.github.aakovalev.cbonds.MethodName.GET_STOCKS;
+import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
@@ -18,12 +18,9 @@ class ClientTest {
 
     @Test
     void simpleRequest() throws URISyntaxException, IOException, InterruptedException {
-        Client client = new Client();
-        Request request = new RequestBuilder()
-                .withCredentials(USER, PASSWORD)
-                .build();
+        Client client = new Client(USER, PASSWORD);
 
-        Response response = client.execute(GET_STOCKS, request);
+        Response response = client.execute(new Request(GET_STOCKS));
 
         assertThat(response.getCount(), is(greaterThan(0)));
         assertThat(response.getLimit(), is(greaterThan(0)));

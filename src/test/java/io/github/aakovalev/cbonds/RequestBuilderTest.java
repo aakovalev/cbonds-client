@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -21,7 +22,7 @@ class RequestBuilderTest {
     void should_build_request_with_given_credentials() {
         Request request = new RequestBuilder()
                 .withCredentials(USER, PASSWORD)
-                .build();
+                .build(GET_STOCKS);
 
         Credentials actualCredentials = request.getAuth();
         Credentials expectedCredentials = new Credentials(USER, PASSWORD);
@@ -33,7 +34,7 @@ class RequestBuilderTest {
         Request request = new RequestBuilder()
                 .withFilter(new Filter(ISIN_CODE, FilterOperator.EQUAL, APPLE_STOCK))
                 .withFilter(new Filter(ISSUED_DATE, FilterOperator.GREATER_THAN, JUN12_2020))
-                .build();
+                .build(GET_STOCKS);
 
         List<Filter> actualFilters = request.getFilters();
         List<Filter> expectedFilters = List.of(
@@ -46,7 +47,7 @@ class RequestBuilderTest {
     void should_build_request_with_given_quantity() {
         Request request = new RequestBuilder()
                 .withQuantity(new Quantity(LIMIT, OFFSET))
-                .build();
+                .build(GET_STOCKS);
 
         Quantity actualQuantity = request.getQuantity();
         Quantity expectedQuantity = new Quantity(LIMIT, OFFSET);
@@ -57,7 +58,7 @@ class RequestBuilderTest {
     void should_build_request_with_given_sorting() {
         Request request = new RequestBuilder()
                 .withSorting(new Sorting(ISIN_CODE, Order.DESC))
-                .build();
+                .build(GET_STOCKS);
 
         List<Sorting> actualSorting = request.getSorting();
         List<Sorting> expectedSorting = List.of(new Sorting(ISIN_CODE, Order.DESC));
@@ -69,7 +70,7 @@ class RequestBuilderTest {
         Request request = new RequestBuilder()
                 .withField(ISIN_CODE)
                 .withField(ISSUED_DATE)
-                .build();
+                .build(GET_STOCKS);
 
         List<Field> actualFields = request.getFields();
         List<Field> expectedFields = List.of(

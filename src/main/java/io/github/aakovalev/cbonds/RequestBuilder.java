@@ -11,8 +11,8 @@ public class RequestBuilder {
     private final List<Sorting> sortings = new ArrayList<>();
     private final List<Field> fields = new ArrayList<>();
 
-    public Request build() {
-        Request request = new Request();
+    public Request build(ApiMethod apiMethod) {
+        Request request = new Request(apiMethod);
         request.setAuth(new Credentials(user, password));
         request.setFilters(filters);
         request.setQuantity(quantity);
