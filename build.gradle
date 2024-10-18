@@ -1,11 +1,16 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id "org.jreleaser" version "1.14.0"
 }
 
 repositories {
     mavenCentral()
 }
+
+group = 'io.github.aakovalev'
+version = '0.1.0'
+description = "Java client for CBonds.ru"
 
 dependencies {
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -19,23 +24,97 @@ dependencies {
     testImplementation "org.json:json:${jsonVersion}"
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 test {
     useJUnitPlatform()
 }
 
+// publishing to maven central baked based on article:
+// https://habr.com/ru/articles/830630/
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'io.github.aakovalev'
             artifactId = 'cbonds-client'
             version = '0.1.0'
-
             from components.java
+
+            pom {
+                description.set(project.description)
+                url.set("https://github.com/aakovalev/cbonds-client")
+                issueManagement {
+                    url.set("https://github.com/aakovalev/cbonds-client/issues")
+                }
+
+                scm {
+                    url.set("https://github.com/aakovalev/cbonds-client")
+                    connection.set("scm:git://github.com/aakovalev/cbonds-client.git")
+                    developerConnection.set("scm:git://github.com/aakovalev/cbonds-client.git")
+                }
+
+                licenses {
+                    license {
+                        name.set("The Apache Software License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                        distribution.set("repo")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("aakovalev")
+                        name.set("Alexey Kovalev")
+                        email.set("kovalev.aleksey@gmail.com")
+                        url.set("https://github.com/aakovalev")
+                    }
+                }
+            }
         }
     }
     repositories {
         maven {
             setUrl(layout.buildDirectory.dir("staging-deploy"))
+        }
+    }
+}
+
+jreleaser {
+    project {
+        inceptionYear = "2024"
+        author("@aakovalev")
+    }
+
+    release {
+        github {
+            skipRelease = true
+            skipTag = true
+        }
+    }
+
+    signing {
+        active = "ALWAYS"
+        armored = true
+        verify = true
+    }
+
+    deploy {
+        maven {
+            mavenCentral.create("sonatype") {
+                active = "ALWAYS"
+                url = "https://central.sonatype.com/api/v1/publisher"
+                stagingRepository(layout.buildDirectory.dir("staging-deploy").get().toString())
+                setAuthorization("Basic")
+                applyMavenCentralRules = false
+                sign = true
+                checksums = true
+                sourceJar = true
+                javadocJar = true
+                retryDelay = 60
+            }
         }
     }
 }
