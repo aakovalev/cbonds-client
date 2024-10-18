@@ -2,7 +2,7 @@ package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CbondsMethod {
+public enum MethodName {
     GET_STOCKS;
 
     @JsonValue

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static io.github.aakovalev.cbonds.CbondsMethod.GET_STOCKS;
+import static io.github.aakovalev.cbonds.MethodName.GET_STOCKS;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
