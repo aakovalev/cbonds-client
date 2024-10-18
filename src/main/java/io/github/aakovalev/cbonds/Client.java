@@ -10,18 +10,18 @@ import java.net.http.HttpResponse;
 import static java.net.http.HttpRequest.*;
 import static java.net.http.HttpResponse.*;
 
-public class CbondsRuClient {
+public class Client {
     private final String url;
     private final HttpClient httpClient;
     public static final String DEFAULT_URL =
             "https://ws.cbonds.info/services/json/";
 
-    public CbondsRuClient(HttpClient client, String url) {
+    public Client(HttpClient client, String url) {
         this.url = url;
         this.httpClient = client;
     }
 
-    public CbondsRuClient() {
+    public Client() {
         this(HttpClient.newHttpClient(), DEFAULT_URL);
     }
 

@@ -12,13 +12,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 
-class CBondsRuClientTest {
+class ClientTest {
     private static final String USER = "test";
     private static final String PASSWORD = "test";
 
     @Test
     void simpleRequest() throws URISyntaxException, IOException, InterruptedException {
-        CbondsRuClient client = new CbondsRuClient();
+        Client client = new Client();
         Request request = new RequestBuilder()
                 .withCredentials(USER, PASSWORD)
                 .build();
