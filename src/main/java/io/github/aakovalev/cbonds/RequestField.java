@@ -2,7 +2,7 @@ package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ClientRequestField {
+public enum RequestField {
     AUTH,
     LOGIN,
     PASSWORD,

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static io.github.aakovalev.cbonds.ClientRequestField.*;
+import static io.github.aakovalev.cbonds.RequestField.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
