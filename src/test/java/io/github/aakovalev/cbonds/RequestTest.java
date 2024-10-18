@@ -11,7 +11,7 @@ import static io.github.aakovalev.cbonds.ClientRequestField.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class ClientRequestTest {
+class RequestTest {
     // test values
     private static final String TEST_USER = "some-user";
     private static final String TEST_PASSWORD = "some-password";
@@ -23,7 +23,7 @@ class ClientRequestTest {
 
     @Test
     void serialization() throws JsonProcessingException {
-        ClientRequest request = new ClientRequest();
+        Request request = new Request();
         request.setAuth(new Credentials(TEST_USER, TEST_PASSWORD));
         request.setFilters(List.of(new Filter(
                 TEST_FIELD, FilterOperator.IS_IN, TEST_ISIN_CODES)));

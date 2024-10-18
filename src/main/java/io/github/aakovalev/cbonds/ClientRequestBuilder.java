@@ -11,8 +11,8 @@ public class ClientRequestBuilder {
     private final List<Sorting> sortings = new ArrayList<>();
     private final List<Field> fields = new ArrayList<>();
 
-    public ClientRequest build() {
-        ClientRequest request = new ClientRequest();
+    public Request build() {
+        Request request = new Request();
         request.setAuth(new Credentials(user, password));
         request.setFilters(filters);
         request.setQuantity(quantity);

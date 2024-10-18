@@ -20,13 +20,13 @@ public class ClientResponse {
     /**
      * Total number of records found according to <code>filters</code>
      * attribute defined in the request
-     * (see {@link ClientRequest})
+     * (see {@link Request})
      */
     private int total;
 
     /**
      * Same value as <code>limit</code> in the request
-     * (see {@link ClientRequest})
+     * (see {@link Request})
      */
     private int limit;
 

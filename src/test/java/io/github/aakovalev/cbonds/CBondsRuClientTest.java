@@ -19,7 +19,7 @@ class CBondsRuClientTest {
     @Test
     void simpleRequest() throws URISyntaxException, IOException, InterruptedException {
         CbondsRuClient client = new CbondsRuClient();
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withCredentials(USER, PASSWORD)
                 .build();
 

@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ClientRequest {
+public class Request {
     private Credentials auth;
     private List<Filter> filters;
     private Quantity quantity;

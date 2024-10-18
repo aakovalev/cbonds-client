@@ -25,7 +25,7 @@ public class CbondsRuClient {
         this(HttpClient.newHttpClient(), DEFAULT_URL);
     }
 
-    public ClientResponse execute(CbondsMethod method, ClientRequest clientRequest)
+    public ClientResponse execute(CbondsMethod method, Request clientRequest)
             throws URISyntaxException, IOException, InterruptedException
     {
         HttpRequest request = buildRequest(

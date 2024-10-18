@@ -7,7 +7,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-class ClientRequestBuilderTest {
+class RequestBuilderTest {
     private static final String USER = "user";
     private static final String PASSWORD = "password";
     private static final String ISIN_CODE = "ISIN_CODE";
@@ -19,7 +19,7 @@ class ClientRequestBuilderTest {
 
     @Test
     void should_build_request_with_given_credentials() {
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withCredentials(USER, PASSWORD)
                 .build();
 
@@ -30,7 +30,7 @@ class ClientRequestBuilderTest {
 
     @Test
     void should_build_request_with_given_filters() {
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withFilter(new Filter(ISIN_CODE, FilterOperator.EQUAL, APPLE_STOCK))
                 .withFilter(new Filter(ISSUED_DATE, FilterOperator.GREATER_THAN, JUN12_2020))
                 .build();
@@ -44,7 +44,7 @@ class ClientRequestBuilderTest {
 
     @Test
     void should_build_request_with_given_quantity() {
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withQuantity(new Quantity(LIMIT, OFFSET))
                 .build();
 
@@ -55,7 +55,7 @@ class ClientRequestBuilderTest {
 
     @Test
     void should_build_request_with_given_sorting() {
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withSorting(new Sorting(ISIN_CODE, Order.DESC))
                 .build();
 
@@ -66,7 +66,7 @@ class ClientRequestBuilderTest {
 
     @Test
     void should_build_request_with_given_fields() {
-        ClientRequest request = new ClientRequestBuilder()
+        Request request = new ClientRequestBuilder()
                 .withField(ISIN_CODE)
                 .withField(ISSUED_DATE)
                 .build();
