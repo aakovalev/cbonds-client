@@ -1,5 +1,5 @@
 
-This is a thin wrapper around [CBonds.ru](https://cbonds.ru/) web services.
+This is a thin wrapper around [CBonds.ru](https://cbonds.ru/api/catalog/folders/) web services.
 The client is still in early development and can't be yet recommended for production usage.
  
 ### Usage
