@@ -3,7 +3,7 @@ package io.github.aakovalev.cbonds;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientRequestBuilder {
+public class RequestBuilder {
     private String user;
     private String password;
     private final List<Filter> filters = new ArrayList<>();
@@ -21,28 +21,28 @@ public class ClientRequestBuilder {
         return request;
     }
 
-    public ClientRequestBuilder withCredentials(String user, String password) {
+    public RequestBuilder withCredentials(String user, String password) {
         this.user = user;
         this.password = password;
         return this;
     }
 
-    public ClientRequestBuilder withFilter(Filter filter) {
+    public RequestBuilder withFilter(Filter filter) {
         filters.add(filter);
         return this;
     }
 
-    public ClientRequestBuilder withQuantity(Quantity quantity) {
+    public RequestBuilder withQuantity(Quantity quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public ClientRequestBuilder withSorting(Sorting sorting) {
+    public RequestBuilder withSorting(Sorting sorting) {
         sortings.add(sorting);
         return this;
     }
 
-    public ClientRequestBuilder withField(String fieldName) {
+    public RequestBuilder withField(String fieldName) {
         fields.add(new Field(fieldName));
         return this;
     }

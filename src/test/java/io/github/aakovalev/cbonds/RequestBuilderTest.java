@@ -19,7 +19,7 @@ class RequestBuilderTest {
 
     @Test
     void should_build_request_with_given_credentials() {
-        Request request = new ClientRequestBuilder()
+        Request request = new RequestBuilder()
                 .withCredentials(USER, PASSWORD)
                 .build();
 
@@ -30,7 +30,7 @@ class RequestBuilderTest {
 
     @Test
     void should_build_request_with_given_filters() {
-        Request request = new ClientRequestBuilder()
+        Request request = new RequestBuilder()
                 .withFilter(new Filter(ISIN_CODE, FilterOperator.EQUAL, APPLE_STOCK))
                 .withFilter(new Filter(ISSUED_DATE, FilterOperator.GREATER_THAN, JUN12_2020))
                 .build();
@@ -44,7 +44,7 @@ class RequestBuilderTest {
 
     @Test
     void should_build_request_with_given_quantity() {
-        Request request = new ClientRequestBuilder()
+        Request request = new RequestBuilder()
                 .withQuantity(new Quantity(LIMIT, OFFSET))
                 .build();
 
@@ -55,7 +55,7 @@ class RequestBuilderTest {
 
     @Test
     void should_build_request_with_given_sorting() {
-        Request request = new ClientRequestBuilder()
+        Request request = new RequestBuilder()
                 .withSorting(new Sorting(ISIN_CODE, Order.DESC))
                 .build();
 
@@ -66,7 +66,7 @@ class RequestBuilderTest {
 
     @Test
     void should_build_request_with_given_fields() {
-        Request request = new ClientRequestBuilder()
+        Request request = new RequestBuilder()
                 .withField(ISIN_CODE)
                 .withField(ISSUED_DATE)
                 .build();
