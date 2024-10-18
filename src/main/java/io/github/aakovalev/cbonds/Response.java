@@ -10,7 +10,7 @@ import java.util.Map;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ClientResponse {
+public class Response {
     /**
      * Number of records found for the current page
      * (for the last page might not equal to <code>limit</code>)
@@ -50,8 +50,8 @@ public class ClientResponse {
 
     private Map<String, Object> meta;
 
-    public static ClientResponse fromJSON(String body) throws JsonProcessingException {
+    public static Response fromJSON(String body) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(body, ClientResponse.class);
+        return mapper.readValue(body, Response.class);
     }
 }

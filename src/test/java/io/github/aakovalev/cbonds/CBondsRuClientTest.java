@@ -23,7 +23,7 @@ class CBondsRuClientTest {
                 .withCredentials(USER, PASSWORD)
                 .build();
 
-        ClientResponse response = client.execute(GET_STOCKS, request);
+        Response response = client.execute(GET_STOCKS, request);
 
         assertThat(response.getCount(), is(greaterThan(0)));
         assertThat(response.getLimit(), is(greaterThan(0)));

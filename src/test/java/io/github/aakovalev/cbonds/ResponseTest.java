@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-class ClientResponseTest {
+class ResponseTest {
 
     private static final String ITEMS = "items";
     private static final String ID = "id";
@@ -43,9 +43,9 @@ class ClientResponseTest {
         jsonResponse.put(LIMIT, LIMIT_VALUE);
         jsonResponse.put(OFFSET, OFFSET_VALUE);
 
-        ClientResponse actualResponse = ClientResponse.fromJSON(jsonResponse.toString());
+        Response actualResponse = Response.fromJSON(jsonResponse.toString());
 
-        ClientResponse expectedResponse = new ClientResponse();
+        Response expectedResponse = new Response();
         expectedResponse.setLimit(LIMIT_VALUE);
         expectedResponse.setTotal(TOTAL_VALUE);
         expectedResponse.setOffset(OFFSET_VALUE);

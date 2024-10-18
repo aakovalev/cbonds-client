@@ -25,14 +25,14 @@ public class CbondsRuClient {
         this(HttpClient.newHttpClient(), DEFAULT_URL);
     }
 
-    public ClientResponse execute(CbondsMethod method, Request clientRequest)
+    public Response execute(CbondsMethod method, Request clientRequest)
             throws URISyntaxException, IOException, InterruptedException
     {
         HttpRequest request = buildRequest(
                 method.name(), clientRequest.toJSONString());
         HttpResponse<String> response =
                 httpClient.send(request, BodyHandlers.ofString());
-        return ClientResponse.fromJSON(response.body());
+        return Response.fromJSON(response.body());
     }
 
     private HttpRequest buildRequest(String methodName, String requestAsJSON)
