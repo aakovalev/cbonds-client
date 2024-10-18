@@ -32,13 +32,16 @@ public class Client {
     }
 
     public Response execute(Request request)
-            throws URISyntaxException, IOException, InterruptedException
     {
         request.setAuth(new Credentials(user, password));
-        HttpRequest httpRequest = toHttpRequest(request);
-        HttpResponse<String> response =
-                httpClient.send(httpRequest, BodyHandlers.ofString());
-        return Response.fromJSON(response.body());
+        try {
+            HttpRequest httpRequest = toHttpRequest(request);
+            HttpResponse<String> response =
+                    httpClient.send(httpRequest, BodyHandlers.ofString());
+            return Response.fromJSON(response.body());
+        } catch (URISyntaxException | IOException | InterruptedException e) {
+           throw new ClientException(e);
+        }
     }
 
     private HttpRequest toHttpRequest(Request request)
