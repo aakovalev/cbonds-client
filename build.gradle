@@ -1,9 +1,7 @@
 plugins {
-    id 'java'
+    id 'java-library'
+    id 'maven-publish'
 }
-
-group = 'org.chiborcode'
-version = '0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -23,4 +21,21 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'io.github.aakovalev'
+            artifactId = 'cbonds-client'
+            version = '0.1.0'
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            setUrl(layout.buildDirectory.dir("staging-deploy"))
+        }
+    }
 }
