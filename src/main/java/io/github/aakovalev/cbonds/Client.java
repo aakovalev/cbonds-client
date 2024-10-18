@@ -31,6 +31,10 @@ public class Client {
         this(HttpClient.newHttpClient(), DEFAULT_URL, user, password);
     }
 
+    public Client(HttpClient httpClient, String user, String password) {
+        this(httpClient, DEFAULT_URL, user, password);
+    }
+
     public Response execute(Request request)
     {
         request.setAuth(new Credentials(user, password));
