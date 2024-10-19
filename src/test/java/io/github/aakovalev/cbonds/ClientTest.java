@@ -81,8 +81,8 @@ class ClientTest {
     void request_with_multiple_sorting() {
         Client client = new Client(USER, PASSWORD);
         Request request = new Request(GET_STOCKS);
-        request.addSorting("kind_id", Order.ASC);
         request.addSorting("id", Order.DESC);
+        request.addSorting("kind_id", Order.ASC);
 
         Response response = client.execute(request);
 
