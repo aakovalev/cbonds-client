@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,5 +29,12 @@ public class Request {
 
     protected String getApiMethodName() {
         return method.name();
+    }
+
+    public void addSorting(String fieldName, Order order) {
+        if (sorting == null) {
+            sorting = new ArrayList<>();
+        }
+        sorting.add(new Sorting(fieldName, order));
     }
 }

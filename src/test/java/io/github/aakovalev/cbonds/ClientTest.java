@@ -6,15 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
-import java.util.List;
 import java.util.Map;
 
 import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
+import static java.lang.Integer.valueOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -53,15 +52,47 @@ class ClientTest {
     }
 
     @Test
-    void request_with_sorting() {
+    void request_with_sorting_desc() {
         Client client = new Client(USER, PASSWORD);
         Request request = new Request(GET_STOCKS);
-        request.setSorting(List.of(new Sorting("id", Order.DESC)));
+        request.addSorting("id", Order.DESC);
 
         Response response = client.execute(request);
 
         Map<String, String> first = response.getItems().get(0);
         Map<String, String> second = response.getItems().get(1);
         assertThat(first.get("id"), greaterThan(second.get("id")));
+    }
+
+    @Test
+    void request_with_sorting_asc() {
+        Client client = new Client(USER, PASSWORD);
+        Request request = new Request(GET_STOCKS);
+        request.addSorting("id", Order.ASC);
+
+        Response response = client.execute(request);
+
+        Map<String, String> first = response.getItems().get(0);
+        Map<String, String> second = response.getItems().get(1);
+        assertThat(first.get("id"), lessThan(second.get("id")));
+    }
+
+    @Test
+    void request_with_multiple_sorting() {
+        Client client = new Client(USER, PASSWORD);
+        Request request = new Request(GET_STOCKS);
+        request.addSorting("kind_id", Order.ASC);
+        request.addSorting("id", Order.DESC);
+
+        Response response = client.execute(request);
+
+        Map<String, String> first = response.getItems().get(0);
+        Map<String, String> second = response.getItems().get(1);
+        assertThat(
+                valueOf(first.get("id")),
+                greaterThan(valueOf(second.get("id"))));
+        assertThat(
+                valueOf(first.get("kind_id")),
+                lessThanOrEqualTo(valueOf(second.get("kind_id"))));
     }
 }
