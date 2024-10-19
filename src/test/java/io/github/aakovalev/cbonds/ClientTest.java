@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
+import java.util.List;
+import java.util.Map;
 
 import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
 import static org.hamcrest.CoreMatchers.is;
@@ -22,7 +24,7 @@ class ClientTest {
     private static final String PASSWORD = "test";
 
     @Test
-    void simpleRequest() {
+    void simple_request() {
         Client client = new Client(USER, PASSWORD);
 
         Response response = client.execute(new Request(GET_STOCKS));
@@ -48,5 +50,18 @@ class ClientTest {
         Assertions.assertThrows(
                 ClientException.class,
                 () -> client.execute(new Request(GET_STOCKS)));
+    }
+
+    @Test
+    void request_with_sorting() {
+        Client client = new Client(USER, PASSWORD);
+        Request request = new Request(GET_STOCKS);
+        request.setSorting(List.of(new Sorting("id", Order.DESC)));
+
+        Response response = client.execute(request);
+
+        Map<String, String> first = response.getItems().get(0);
+        Map<String, String> second = response.getItems().get(1);
+        assertThat(first.get("id"), greaterThan(second.get("id")));
     }
 }
