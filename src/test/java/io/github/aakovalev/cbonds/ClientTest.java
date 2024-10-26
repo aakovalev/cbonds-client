@@ -1,8 +1,7 @@
 package io.github.aakovalev.cbonds;
 
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.IOException;
 import java.net.http.HttpClient;
@@ -21,11 +20,16 @@ import static org.mockito.Mockito.when;
 class ClientTest {
     private static final String USER = "test";
     private static final String PASSWORD = "test";
+    private Client client;
+
+
+    @BeforeEach
+    void setUp() {
+        client = new Client(USER, PASSWORD);
+    }
 
     @Test
     void simple_request() {
-        Client client = new Client(USER, PASSWORD);
-
         Response response = client.execute(new Request(GET_STOCKS));
 
         assertThat(response.getCount(), is(greaterThan(0)));
@@ -42,7 +46,7 @@ class ClientTest {
             throws IOException, InterruptedException
     {
         HttpClient underlyingHttpClient = mock(HttpClient.class);
-        Client client = new Client(underlyingHttpClient, USER, PASSWORD);
+        client = new Client(underlyingHttpClient, USER, PASSWORD);
         when(underlyingHttpClient.send(any(), any()))
                 .thenThrow(new IOException("I/O issue"));
 
@@ -53,7 +57,6 @@ class ClientTest {
 
     @Test
     void request_with_sorting_desc() {
-        Client client = new Client(USER, PASSWORD);
         Request request = new Request(GET_STOCKS);
         request.addSorting("id", Order.DESC);
 
@@ -66,7 +69,6 @@ class ClientTest {
 
     @Test
     void request_with_sorting_asc() {
-        Client client = new Client(USER, PASSWORD);
         Request request = new Request(GET_STOCKS);
         request.addSorting("id", Order.ASC);
 
@@ -79,7 +81,6 @@ class ClientTest {
 
     @Test
     void request_with_multiple_sorting() {
-        Client client = new Client(USER, PASSWORD);
         Request request = new Request(GET_STOCKS);
         request.addSorting("id", Order.DESC);
         request.addSorting("kind_id", Order.ASC);
