@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.aakovalev.cbonds.ApiMethodName;
+import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
 import lombok.Data;
 
 import java.util.ArrayList;

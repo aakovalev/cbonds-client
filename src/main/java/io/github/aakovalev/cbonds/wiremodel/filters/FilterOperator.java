@@ -1,4 +1,4 @@
-package io.github.aakovalev.cbonds.wiremodel;
+package io.github.aakovalev.cbonds.wiremodel.filters;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

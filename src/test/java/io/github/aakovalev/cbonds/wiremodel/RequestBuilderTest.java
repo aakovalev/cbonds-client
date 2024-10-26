@@ -1,6 +1,7 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
 
-import io.github.aakovalev.cbonds.wiremodel.*;
+import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
+import io.github.aakovalev.cbonds.wiremodel.filters.FilterOperator;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

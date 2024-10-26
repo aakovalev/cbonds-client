@@ -1,7 +1,6 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import io.github.aakovalev.cbonds.wiremodel.Response;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;

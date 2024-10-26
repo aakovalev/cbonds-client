@@ -2,6 +2,8 @@ package io.github.aakovalev.cbonds;
 
 import io.github.aakovalev.cbonds.wiremodel.*;
 import io.github.aakovalev.cbonds.wiremodel.Order;
+import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
+import io.github.aakovalev.cbonds.wiremodel.filters.FilterOperator;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 

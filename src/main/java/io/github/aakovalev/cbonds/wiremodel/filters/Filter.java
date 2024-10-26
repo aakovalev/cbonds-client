@@ -1,4 +1,4 @@
-package io.github.aakovalev.cbonds.wiremodel;
+package io.github.aakovalev.cbonds.wiremodel.filters;
 
 import lombok.Data;
 

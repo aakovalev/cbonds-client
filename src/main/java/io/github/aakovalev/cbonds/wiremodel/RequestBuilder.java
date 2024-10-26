@@ -1,6 +1,7 @@
 package io.github.aakovalev.cbonds.wiremodel;
 
 import io.github.aakovalev.cbonds.ApiMethodName;
+import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
 
 import java.util.ArrayList;
 import java.util.List;
