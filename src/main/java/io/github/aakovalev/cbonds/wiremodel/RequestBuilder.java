@@ -1,4 +1,6 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
+
+import io.github.aakovalev.cbonds.ApiMethodName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +13,8 @@ public class RequestBuilder {
     private final List<Sorting> sortings = new ArrayList<>();
     private final List<Field> fields = new ArrayList<>();
 
-    public Request build(ApiMethod apiMethod) {
-        Request request = new Request(apiMethod);
+    public Request build(ApiMethodName apiMethodName) {
+        Request request = new Request(apiMethodName);
         request.setAuth(new Credentials(user, password));
         request.setFilters(filters);
         request.setQuantity(quantity);

@@ -1,10 +1,11 @@
 package io.github.aakovalev.cbonds;
 
+import io.github.aakovalev.cbonds.wiremodel.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
+import static io.github.aakovalev.cbonds.ApiMethodName.GET_STOCKS;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 

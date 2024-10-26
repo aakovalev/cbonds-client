@@ -1,5 +1,7 @@
 package io.github.aakovalev.cbonds;
 
+import io.github.aakovalev.cbonds.wiremodel.*;
+import io.github.aakovalev.cbonds.wiremodel.Order;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 
@@ -8,7 +10,7 @@ import java.net.http.HttpClient;
 import java.util.List;
 import java.util.Map;
 
-import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
+import static io.github.aakovalev.cbonds.ApiMethodName.GET_STOCKS;
 import static java.lang.Integer.valueOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -64,7 +66,7 @@ class ClientTest {
     @Test
     void request_with_sorting_desc() {
         Request request = new Request(GET_STOCKS);
-        request.addSorting(ID, Order.DESC);
+        request.addSorting(ID, io.github.aakovalev.cbonds.wiremodel.Order.DESC);
 
         Response response = client.execute(request);
 
@@ -76,7 +78,7 @@ class ClientTest {
     @Test
     void request_with_sorting_asc() {
         Request request = new Request(GET_STOCKS);
-        request.addSorting(ID, Order.ASC);
+        request.addSorting(ID, io.github.aakovalev.cbonds.wiremodel.Order.ASC);
 
         Response response = client.execute(request);
 
@@ -88,7 +90,7 @@ class ClientTest {
     @Test
     void request_with_multiple_sorting() {
         Request request = new Request(GET_STOCKS);
-        request.addSorting(ID, Order.DESC);
+        request.addSorting(ID, io.github.aakovalev.cbonds.wiremodel.Order.DESC);
         request.addSorting(KIND_ID, Order.ASC);
 
         Response response = client.execute(request);

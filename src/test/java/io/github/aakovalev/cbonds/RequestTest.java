@@ -1,14 +1,15 @@
 package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.github.aakovalev.cbonds.wiremodel.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static io.github.aakovalev.cbonds.ApiMethod.GET_STOCKS;
-import static io.github.aakovalev.cbonds.RequestField.*;
+import static io.github.aakovalev.cbonds.ApiMethodName.GET_STOCKS;
+import static io.github.aakovalev.cbonds.wiremodel.RequestField.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

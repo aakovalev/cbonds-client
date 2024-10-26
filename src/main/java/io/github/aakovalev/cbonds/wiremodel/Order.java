@@ -1,9 +1,9 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ApiMethod {
-    GET_STOCKS;
+public enum Order {
+    ASC, DESC;
 
     @JsonValue
     public String toValue() {

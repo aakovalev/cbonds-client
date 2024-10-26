@@ -1,6 +1,7 @@
 package io.github.aakovalev.cbonds;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.github.aakovalev.cbonds.wiremodel.*;
 
 import java.io.IOException;
 import java.net.URI;

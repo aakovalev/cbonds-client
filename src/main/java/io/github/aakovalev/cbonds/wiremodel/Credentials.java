@@ -1,9 +1,9 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
 
 import lombok.Data;
 
 @Data
-class Credentials {
+public class Credentials {
     private final String login;
     private final String password;
 

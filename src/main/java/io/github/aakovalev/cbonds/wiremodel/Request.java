@@ -1,25 +1,26 @@
-package io.github.aakovalev.cbonds;
+package io.github.aakovalev.cbonds.wiremodel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.aakovalev.cbonds.ApiMethodName;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@JsonIgnoreProperties(value = {"method"})
+@JsonIgnoreProperties(value = {"apiMethodName"})
 public class Request {
-    private final ApiMethod method;
+    private final ApiMethodName apiMethodName;
     private Credentials auth;
     private List<Filter> filters;
     private Quantity quantity;
     private List<Sorting> sorting;
     private List<Field> fields;
 
-    public Request(ApiMethod method) {
-        this.method = method;
+    public Request(ApiMethodName apiMethodName) {
+        this.apiMethodName = apiMethodName;
     }
 
     public String toJSONString() throws JsonProcessingException {
@@ -27,8 +28,8 @@ public class Request {
         return mapper.writeValueAsString(this);
     }
 
-    protected String getApiMethodName() {
-        return method.name();
+    public String getApiMethodName() {
+        return apiMethodName.name();
     }
 
     public void addSorting(String fieldName, Order order) {
