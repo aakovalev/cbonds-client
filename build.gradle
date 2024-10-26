@@ -1,6 +1,8 @@
 plugins {
+    id 'java'
     id 'java-library'
     id 'maven-publish'
+    id 'info.solidsoft.pitest' version '1.15.0'
     id "org.jreleaser" version "1.14.0"
 }
 
@@ -32,6 +34,10 @@ java {
 
 test {
     useJUnitPlatform()
+}
+
+pitest {
+    junit5PluginVersion = '1.2.1'
 }
 
 // publishing to maven central baked based on article:
