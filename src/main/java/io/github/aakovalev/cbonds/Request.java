@@ -37,4 +37,11 @@ public class Request {
         }
         sorting.add(new Sorting(fieldName, order));
     }
+
+    public void addFilter(Filter filter) {
+        if (filters == null) {
+            filters = new ArrayList<>();
+        }
+        filters.add(filter);
+    }
 }
