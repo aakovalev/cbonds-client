@@ -25,7 +25,7 @@ class MultiValueFilterTest {
 
         JSONObject expectedJson = new JSONObject()
                 .put("field", ID)
-                .put("operator", IS_IN.toJsonValue())
+                .put("operator", getFilterOperator().toJsonValue())
                 .put("value", toJointValue(getTestValues()));
         assertTrue(new JSONObject(actualJson).similar(expectedJson),
                 "Should be similar JSONs: \n\t"
@@ -33,8 +33,12 @@ class MultiValueFilterTest {
                         + "\n\t" + actualJson);
     }
 
+    protected FilterOperator getFilterOperator() {
+        return IS_IN;
+    }
+
     protected MultiValueFilter createFilterFor(String[] values) {
-        return new MultiValueFilter(ID, IS_IN, values);
+        return new MultiValueFilter(ID, getFilterOperator(), values);
     }
 
     protected String[] getTestValues() {
