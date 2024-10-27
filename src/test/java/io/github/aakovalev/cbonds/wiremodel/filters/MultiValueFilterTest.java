@@ -17,14 +17,13 @@ class MultiValueFilterTest {
 
     @Test
     void serialization() throws JsonProcessingException {
-        String[] values = getTestValues();
-        MultiValueFilter mvFilter = createFilterFor(values);
+        MultiValueFilter mvFilter = createFilterFor(getTestValues());
         ObjectMapper mapper = new ObjectMapper();
 
         String actualJson = mapper.writeValueAsString(mvFilter);
 
         JSONObject expectedJson = new JSONObject()
-                .put("field", ID)
+                .put("field", getTestField())
                 .put("operator", getFilterOperator().toJsonValue())
                 .put("value", toJointValue(getTestValues()));
         assertTrue(new JSONObject(actualJson).similar(expectedJson),
@@ -33,12 +32,16 @@ class MultiValueFilterTest {
                         + "\n\t" + actualJson);
     }
 
+    protected String getTestField() {
+        return ID;
+    }
+
     protected FilterOperator getFilterOperator() {
         return IS_IN;
     }
 
     protected MultiValueFilter createFilterFor(String[] values) {
-        return new MultiValueFilter(ID, getFilterOperator(), values);
+        return new MultiValueFilter(getTestField(), getFilterOperator(), values);
     }
 
     protected String[] getTestValues() {

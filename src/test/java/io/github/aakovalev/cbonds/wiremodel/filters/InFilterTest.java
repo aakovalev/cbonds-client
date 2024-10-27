@@ -19,4 +19,9 @@ class InFilterTest extends MultiValueFilterTest {
     protected FilterOperator getFilterOperator() {
         return FilterOperator.IS_IN;
     }
+
+    @Override
+    protected String getTestField() {
+        return ID;
+    }
 }
