@@ -1,5 +1,5 @@
 ### Development plans
-* add support to request only specific fields in the response
+* ~~add support to request only specific fields in the response~~
 * ~~add support for multiple values for filter operations like "in", "not in"~~
 * improve documentation and usage example
 * integrate library releases with GitHub releases
