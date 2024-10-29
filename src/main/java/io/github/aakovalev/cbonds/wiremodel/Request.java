@@ -46,4 +46,11 @@ public class Request {
         }
         filters.add(filter);
     }
+
+    public void addField(String fieldName) {
+        if (fields == null) {
+            fields = new ArrayList<>();
+        }
+        fields.add(new Field(fieldName));
+    }
 }

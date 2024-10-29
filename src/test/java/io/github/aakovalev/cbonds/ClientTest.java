@@ -1,9 +1,10 @@
 package io.github.aakovalev.cbonds;
 
-import io.github.aakovalev.cbonds.wiremodel.*;
 import io.github.aakovalev.cbonds.wiremodel.Order;
+import io.github.aakovalev.cbonds.wiremodel.*;
 import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
 import io.github.aakovalev.cbonds.wiremodel.filters.FilterOperator;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 
@@ -18,6 +19,8 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -31,6 +34,8 @@ class ClientTest {
     private static final String TEST_KIND_ID = "2";
     private static final String KIND_ID = "kind_id";
     private static final String ID_UP_LIMIT = "6190";
+    private static final String ISIN = "isin";
+    public static final String EMITENT_INN = "emitent_inn";
     private Client client;
 
     @BeforeEach
@@ -133,4 +138,20 @@ class ClientTest {
         assertThat(items.size(), equalTo(1));
         assertThat(items.get(0).get(ID), is(TEST_ID2));
     }
+
+    @Test
+    void request_with_filtered_field() {
+        Request request = new Request(GET_STOCKS);
+        request.addField(ISIN);
+        request.addField(EMITENT_INN);
+
+        Response response = client.execute(request);
+
+        Map<String, String> firstItem = response.getItems().get(0);
+        assertTrue(firstItem.containsKey(ISIN));
+        assertTrue(firstItem.containsKey(EMITENT_INN));
+        assertFalse(firstItem.containsKey(ID));
+    }
+
+
 }
