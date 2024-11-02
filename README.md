@@ -11,7 +11,7 @@ Add dependency of the client library to your project (e.g. for Gradle):
 
 Then you could use client in your project:
 
-        client = new Client("test", "test");
+        client = new Client("your-login", "your-password"); // use "test" for user and password if not registered at CBonds.ru
         Request request = new Request(GET_STOCKS);
 
         // specify the fields that are needed in the response
