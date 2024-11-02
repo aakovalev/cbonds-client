@@ -4,7 +4,6 @@ import io.github.aakovalev.cbonds.wiremodel.Order;
 import io.github.aakovalev.cbonds.wiremodel.*;
 import io.github.aakovalev.cbonds.wiremodel.filters.Filter;
 import io.github.aakovalev.cbonds.wiremodel.filters.FilterOperator;
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.*;
 
@@ -152,6 +151,4 @@ class ClientTest {
         assertTrue(firstItem.containsKey(EMITENT_INN));
         assertFalse(firstItem.containsKey(ID));
     }
-
-
 }
