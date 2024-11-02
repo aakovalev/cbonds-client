@@ -11,7 +11,7 @@ repositories {
 }
 
 group = 'io.github.aakovalev'
-version = '0.3.0'
+version = "${cbondsClientVersion}"
 description = "Java client for CBonds.ru"
 
 dependencies {
@@ -47,7 +47,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.github.aakovalev'
             artifactId = 'cbonds-client'
-            version = '0.2.0'
+            version = "${cbondsClientVersion}"
             from components.java
 
             pom {
