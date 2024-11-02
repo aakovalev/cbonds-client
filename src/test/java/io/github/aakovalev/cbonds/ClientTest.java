@@ -151,4 +151,24 @@ class ClientTest {
         assertTrue(firstItem.containsKey(EMITENT_INN));
         assertFalse(firstItem.containsKey(ID));
     }
+
+    @Test
+    void example_for_documentation() {
+        client = new Client("test", "test");
+        Request request = new Request(GET_STOCKS);
+
+        // specify the fields that are needed in the response
+        request.addField("id");
+        request.addField("isin");
+        request.addField("emitent_inn");
+
+        // specify filter that is needed
+        request.addFilter(new Filter("kind_id", FilterOperator.EQUAL, "2" /* stocks only */));
+
+        // specify the order of result items
+        request.addSorting("id", Order.DESC);
+
+        Response response = client.execute(request);
+        System.out.println("Returned items: " + response.getItems());
+    }
 }
