@@ -155,7 +155,7 @@ class ClientTest {
     @Test
     void example_for_documentation() {
         client = new Client("test", "test");
-        Request request = new Request(GET_STOCKS);
+        Request request = new Request("get_stocks");
 
         // specify the fields that are needed in the response
         request.addField("id");
