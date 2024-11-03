@@ -171,4 +171,15 @@ class ClientTest {
         Response response = client.execute(request);
         System.out.println("Returned items: " + response.getItems());
     }
+
+    @Test
+    void request_arbitrary_api_method() {
+        Request request = new Request("get_entity_types");
+
+        Response response = client.execute(request);
+
+        List<Map<String, String>> actualItems = response.getItems();
+        assertThat(actualItems, is(notNullValue()));
+        assertThat(actualItems.size(), is(greaterThan(0)));
+    }
 }

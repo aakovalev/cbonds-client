@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@JsonIgnoreProperties(value = {"apiMethodName"})
+@JsonIgnoreProperties(value = {"methodName"})
 public class Request {
-    private final ApiMethodName apiMethodName;
+    private final String methodName;
     private Credentials auth;
     private List<Filter> filters;
     private Quantity quantity;
@@ -21,16 +21,16 @@ public class Request {
     private List<Field> fields;
 
     public Request(ApiMethodName apiMethodName) {
-        this.apiMethodName = apiMethodName;
+        this(apiMethodName.name().toLowerCase());
+    }
+
+    public Request(String methodName) {
+        this.methodName = methodName;
     }
 
     public String toJSONString() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.writeValueAsString(this);
-    }
-
-    public String getApiMethodName() {
-        return apiMethodName.name();
     }
 
     public void addSorting(String fieldName, Order order) {

@@ -52,7 +52,7 @@ public class Client {
     private HttpRequest toHttpRequest(Request request)
             throws URISyntaxException, JsonProcessingException {
         return newBuilder()
-                .uri(buildURI(request.getApiMethodName()))
+                .uri(buildURI(request.getMethodName()))
                 .POST(BodyPublishers.ofString(request.toJSONString()))
                 .build();
     }
